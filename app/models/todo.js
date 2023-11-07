@@ -3,13 +3,11 @@
     EXPRESSJS - TODO Project with Sequelize
 ------------------------------------------------------- */
 //* SEQUELIZE
-//? npm i sequelize sqlite3
 
 const { sequelize, DataTypes } = require('../dbConnection')
 
 // sequelize.define('tableName', { columns })
 const Todo = sequelize.define('todo', {
-    // https://sequelize.org/docs/v7/models/data-types/
      
     // id: { //? Not need define ID field, it will create auto.
     //     type: DataTypes.INTEGER,

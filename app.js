@@ -10,11 +10,24 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8000;
 
 /* ------------------------------------------------------- */
+//Template
+app.set('view engine','ejs')
+
+app.set('views','public')
+
+/*----------------------------------------------------------*/
 // Accept json data & convert to object:
 app.use(express.json())
 
 // Router:
-app.use(require('./app/routes/todo'))
+app.all('/',(req,res)=> {
+    res.render('index')
+})
+
+app.use('/api',require('./app/routes/todo'))
+app.use('/view',require('./app/routes/todoTemplate'))
+
+
 
 // DatabaseConnection:
 const { dbConnection } = require('./app/dbConnection')
