@@ -1,56 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TODO LIST</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-</head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
 
-<body>
-    <br>
-    <br>
+  <body>
+    <br />
+    <br />
     <div class="container">
-        <div class="row">
-            <h1 class="text-center text-success m-3">TODO LIST</h1>
-            <p class="text-bg-primary mb-xl-5">Record Count : <%= data.count  %></p>
-            <table class="table table-striped">
-                <thead>
-                    <tr >
-                        <th class="m-3">ID</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Priority</th>
-                        <th>Is Done?</th>
-                        <th>Created</th>
-                        <th>
-                            <a class="btn btn-sm btn-primary w-75" href="/view/create">New Todo</a>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for( let i in data.rows) {%>
-                        <tr >
-                            <td># <%= +i+1 %></td>
-                            <td><%= data.rows[i].title %></td>
-                            <td><%= data.rows[i].description %></td>
-                            <td><%= PRIORITY[data.rows[i].priority] %></td>
-                            <td><%= (data.rows[i].isDone ? 'Yes' : 'No' )%></td>
-                            <td><%= data.rows[i].createdAt.toLocaleDateString('tr') %></td>
-                            <td>
-                                <a class="btn btn-sm btn-secondary" href="/view/id ">Read</a>
-                                <a class="btn btn-sm btn-info" href="/view/id/update">Update</a>
-                                <a class="btn btn-sm btn-danger" href="/view/id/delete" onclick="return confirm('Are you sure?')">Delete</a>
-                            </td>
-                        </tr>  
-                         <%} %>
-                    
-                </tbody>
-            </table>
-        </div>
-    </div>
-</body>
+      <div class="row">
+        <h1 class="text-center text-success m-3">TODO LIST</h1>
+        <p class="text-bg-primary mb-xl-5">Record Count : <%= data.count %></p>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th class="m-3">ID</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Priority</th>
+              <th>Is Done?</th>
+              <th>Created</th>
+              <th>
+                <a class="btn btn-sm btn-primary w-75" href="/view/create"
+                  >New Todo</a
+                >
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for( let i in data.rows) { %>
+            <tr>
+              <% let color= data.rows[i].isDone ? 'text-success' : 'text-dark'%>
+              <% let bgColor = (i % 2 === 0) ? 'bg-dark-subtle' :
+              'bg-primary-subtle'; %>
 
+              <td class="<%= color %> <%= bgColor%>"> <%= +i+1 %></td>
+              <td class="<%= color %> <%= bgColor%>">
+                <%= data.rows[i].title %>
+              </td>
+              <td class="<%= color %> <%= bgColor%>">
+                <%= data.rows[i].description %>
+              </td>
+              <td class="<%= color %> <%= bgColor%>">
+                <%= PRIORITY[data.rows[i].priority] %>
+              </td>
+              <td class="<%= color %> <%= bgColor%>">
+                <%= (data.rows[i].isDone ? 'Yes' : 'No' )%>
+              </td>
+              <td class="<%= color %> <%= bgColor%>">
+                <%= data.rows[i].createdAt.toLocaleDateString('tr') %>
+              </td>
+              <td class="m-lg-1">
+                <a class="btn btn-sm btn-secondary" href="/view/<%= data.rows[i].id %> ">Read</a>
+                <a class="btn btn-sm btn-info" href="/view/<%= data.rows[i].id %>">Update</a>
+                <a
+                  class="btn btn-sm btn-danger"
+                  href="/view/<%= data.rows[i].id %>/delete"
+                  onclick="return confirm('Are you sure?')"
+                  >Delete</a
+                >
+              </td>
+            </tr>
+            <%} %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
 </html>
