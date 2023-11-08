@@ -39,12 +39,9 @@ module.exports = {
   read: async (req, res) => {
     // https://sequelize.org/docs/v6/core-concepts/model-querying-finders/
     // const data = await Todo.findOne({ where: { id: req.params.id } })
-
     const data = await Todo.findByPk(req.params.id);
-    res.status(200).send({
-      error: false,
-      result: data,
-    });
+
+    res.render("todoRead", { todo:data.dataValues, PRIORITY });
   },
 
   update: async (req, res) => {
