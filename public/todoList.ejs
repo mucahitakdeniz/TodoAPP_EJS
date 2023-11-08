@@ -12,7 +12,7 @@
     />
   </head>
 
-  <body>
+  <body class="bg-success-subtle">
     <br />
     <br />
     <div class="container">
@@ -37,7 +37,7 @@
           </thead>
           <tbody>
             <% for( let i in data.rows) { %>
-            <tr>
+            <tr >
               <% let color= data.rows[i].isDone ? 'text-success' : 'text-dark'%>
               <% let bgColor = (i % 2 === 0) ? 'bg-dark-subtle' :
               'bg-primary-subtle'; %>
