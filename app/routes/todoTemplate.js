@@ -13,6 +13,8 @@ router.post("/create", todoTemplate.create);
 
 router.get("/:id", todoTemplate.read);
 
+router.get("/:id/isDone", todoTemplate.isDone);
+
 router.get("/:id/delete", todoTemplate.delete);
 
 router.all("/create", todoTemplate.create);

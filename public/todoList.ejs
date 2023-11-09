@@ -28,8 +28,8 @@
               <th>Priority</th>
               <th>Is Done?</th>
               <th>Created</th>
-              <th>
-                <a class="btn btn-sm btn-primary w-75" href="/view/create"
+              <th class="w-25">
+                <a class="btn btn-sm btn-primary w-100" href="/view/create"
                   >New Todo</a
                 >
               </th>
@@ -59,6 +59,20 @@
                 <%= data.rows[i].createdAt.toLocaleDateString('tr') %>
               </td>
               <td class="m-lg-1">
+                <% if (data.rows[i].isDone) { %>
+                <a
+                  class="btn btn-sm btn-warning"
+                  href="/view/<%= data.rows[i].id %>/isDone"
+                  >Isn't done</a
+                >
+                <% } else { %>
+                <a
+                  class="btn btn-sm btn-success"
+                  href="/view/<%= data.rows[i].id %>/isDone"
+                  >Is done</a
+                >
+                <% } %>
+
                 <a
                   class="btn btn-sm btn-secondary"
                   href="/view/<%= data.rows[i].id %> "

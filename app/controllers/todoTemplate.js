@@ -51,6 +51,17 @@ module.exports = {
       result: await Todo.findByPk(req.params.id),
     });
   },
+  isDone: async (req, res) => {
+    const data = await Todo.findByPk(req.params.id);
+    console.log(data.dataValues);
+
+    data.dataValues.isDone = !data.dataValues.isDone;
+    // const isdone = await Todo.update(data, {
+    //   where: { id: req.params.id },
+    //});
+    console.log(data.dataValues.isDone);
+    res.redirect("/view");
+  },
 
   delete: async (req, res) => {
     // Model.destroy({ filter })
