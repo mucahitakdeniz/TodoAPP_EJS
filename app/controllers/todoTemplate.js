@@ -22,26 +22,19 @@ module.exports = {
   // CRUD METHODS:
 
   create: async (req, res) => {
-    // const data = await Todo.create({
-    //     title: 'Test Title',
-    //     description: 'Test Description',
-    // })
-    // console.log( typeof req.body, req.body )
-    const data = await Todo.create(req.body);
-    res.status(201).send({
-      error: false,
-      body: req.body, // Send Data
-      message: "Created",
-      result: data, // Receive Data
-    });
+    console.log(req.method);
+    if (req.method == "POST") {
+      const data = await Todo.create(req.body);
+      res.redirect("/view");
+    } else {
+      res.render("todoCreate");
+    }
   },
 
   read: async (req, res) => {
-    // https://sequelize.org/docs/v6/core-concepts/model-querying-finders/
-    // const data = await Todo.findOne({ where: { id: req.params.id } })
     const data = await Todo.findByPk(req.params.id);
 
-    res.render("todoRead", { todo:data.dataValues, PRIORITY });
+    res.render("todoRead", { todo: data.dataValues, PRIORITY });
   },
 
   update: async (req, res) => {
@@ -62,16 +55,7 @@ module.exports = {
   delete: async (req, res) => {
     // Model.destroy({ filter })
     const isDeleted = await Todo.destroy({ where: { id: req.params.id } });
-    // isDeleted return: 1 or 0
-    if (isDeleted) {
-      res.sendStatus(204);
-    } else {
-      res.sendStatus(404);
-    }
-    // res.status(204).send({
-    //     error: false,
-    //     message: 'Deleted',
-    //     isDeleted: Boolean(isDeleted)
-    // })
+
+    res.redirect("/view");
   },
 };

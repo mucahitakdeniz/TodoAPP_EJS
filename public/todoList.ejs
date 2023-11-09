@@ -37,12 +37,12 @@
           </thead>
           <tbody>
             <% for( let i in data.rows) { %>
-            <tr >
+            <tr>
               <% let color= data.rows[i].isDone ? 'text-success' : 'text-dark'%>
               <% let bgColor = (i % 2 === 0) ? 'bg-dark-subtle' :
               'bg-primary-subtle'; %>
 
-              <td class="<%= color %> <%= bgColor%>"> <%= +i+1 %></td>
+              <td class="<%= color %> <%= bgColor%>"><%= +i+1 %></td>
               <td class="<%= color %> <%= bgColor%>">
                 <%= data.rows[i].title %>
               </td>
@@ -59,8 +59,16 @@
                 <%= data.rows[i].createdAt.toLocaleDateString('tr') %>
               </td>
               <td class="m-lg-1">
-                <a class="btn btn-sm btn-secondary" href="/view/<%= data.rows[i].id %> ">Read</a>
-                <a class="btn btn-sm btn-info" href="/view/<%= data.rows[i].id %>">Update</a>
+                <a
+                  class="btn btn-sm btn-secondary"
+                  href="/view/<%= data.rows[i].id %> "
+                  >Read</a
+                >
+                <a
+                  class="btn btn-sm btn-info"
+                  href="/view/<%= data.rows[i].id %>"
+                  >Update</a
+                >
                 <a
                   class="btn btn-sm btn-danger"
                   href="/view/<%= data.rows[i].id %>/delete"
