@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Router:
 app.all("/", (req, res) => {
-  res.render("index");
+  res.redirect('/view')
 });
 
 app.use("/api", require("./app/routes/todo"));
