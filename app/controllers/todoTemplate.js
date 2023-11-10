@@ -44,7 +44,9 @@ module.exports = {
       });
       res.redirect("/view");
     } else {
-      res.render("todoUpdate");
+      const data = await Todo.findByPk(req.params.id);
+console.log(data.dataValues);
+      res.render("todoUpdate",{todo:data.dataValues});
     }
   },
   isDone: async (req, res) => {
