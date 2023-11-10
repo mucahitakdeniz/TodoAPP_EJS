@@ -35,9 +35,9 @@
                 <td>Priority</td>
                 <td>
                   <select class="form-select" name="priority">
-                    <option value="1">High</option>
-                    <option value="0" selected>Norm</option>
-                    <option value="-1">Low</option>
+                    <option value="1" <%= (todo.priority==1 ? 'selected' : '')%>>High</option>
+                    <option value="0" <%= (todo.priority==0 ? 'selected' : '')%>>Norm</option>
+                    <option value="-1" <%= (todo.priority==-1 ? 'selected' : '')%>>Low</option>
                   </select>
                 </td>
               </tr>
@@ -64,8 +64,8 @@
                 <td>Is Done?</td>
                 <td>
                   <select class="form-select" name="isDone">
-                    <option value="1">Yes</option>
-                    <option value="0" selected>No</option>
+                    <option value="1" <%= (todo.isDone==true ? 'selected' : '')%> >Yes</option>
+                    <option value="0" <%= (todo.isDone==false ? 'selected' : '')%>>No</option>
                   </select>
                 </td>
               </tr>
