@@ -58,7 +58,7 @@
               <td class="<%= color %> <%= bgColor%>">
                 <%= data.rows[i].createdAt.toLocaleDateString('tr') %>
               </td>
-              <td class="m-lg-1">
+              <td class="m-lg-1 m-auto">
                 <% if (data.rows[i].isDone) { %>
                 <a
                   class="btn btn-sm btn-warning"
@@ -67,7 +67,7 @@
                 >
                 <% } else { %>
                 <a
-                  class="btn btn-sm btn-success"
+                  class="btn btn-sm btn-success me-3"
                   href="/view/<%= data.rows[i].id %>/isDone"
                   >Is done</a
                 >
@@ -80,7 +80,7 @@
                 >
                 <a
                   class="btn btn-sm btn-info"
-                  href="/view/<%= data.rows[i].id %>"
+                  href="/view/<%= data.rows[i].id %>/update"
                   >Update</a
                 >
                 <a

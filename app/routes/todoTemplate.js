@@ -17,6 +17,9 @@ router.get("/:id/isDone", todoTemplate.isDone);
 
 router.get("/:id/delete", todoTemplate.delete);
 
+router.get("/:id/update", todoTemplate.update);
+router.post("/:id/update", todoTemplate.update);
+
 router.all("/create", todoTemplate.create);
 
 module.exports = router;

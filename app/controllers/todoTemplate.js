@@ -38,33 +38,28 @@ module.exports = {
   },
 
   update: async (req, res) => {
-    // Model.update({ newData }, { filter })
-    const isUpdated = await Todo.update(req.body, {
-      where: { id: req.params.id },
-    });
-    // isUpdated return: [ 1 ] or [ 0 ]
-    res.status(202).send({
-      error: false,
-      body: req.body, // Send Data
-      message: "Updated",
-      isUpdated: Boolean(isUpdated[0]),
-      result: await Todo.findByPk(req.params.id),
-    });
+    if (req.method == "POST") {
+      const isUpdated = await Todo.update(req.body, {
+        where: { id: req.params.id },
+      });
+      res.redirect("/view");
+    } else {
+      res.render("todoUpdate");
+    }
   },
   isDone: async (req, res) => {
     const data = await Todo.findByPk(req.params.id);
     console.log(data.dataValues);
 
     data.dataValues.isDone = !data.dataValues.isDone;
-    // const isdone = await Todo.update(data, {
-    //   where: { id: req.params.id },
-    //});
+    const isUpdated = await Todo.update(data.dataValues, {
+      where: { id: data.dataValues.id },
+    });
     console.log(data.dataValues.isDone);
     res.redirect("/view");
   },
 
   delete: async (req, res) => {
-    // Model.destroy({ filter })
     const isDeleted = await Todo.destroy({ where: { id: req.params.id } });
 
     res.redirect("/view");
